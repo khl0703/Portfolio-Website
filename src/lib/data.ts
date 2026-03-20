@@ -119,15 +119,39 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    role: { en: "Marketing Chief Director", ko: "마케팅 총괄 디렉터" },
+    organization: {
+      en: "University of Toronto Korean Students' Association (UTKSA)",
+      ko: "토론토 대학교 한인학생회 (UTKSA)",
+    },
+    period: "Jan 2026 — Mar 2026",
+    description: {
+      en: "Leading brand strategy, social media content creation, and event marketing for one of the largest cultural clubs on campus. Managing a team of designers and content creators.",
+      ko: "캠퍼스 내 최대 규모의 문화 동아리 중 하나의 브랜드 전략, 소셜 미디어 콘텐츠 제작, 이벤트 마케팅을 주도하고 있습니다. 디자이너와 콘텐츠 크리에이터 팀을 관리합니다.",
+    },
+  },
+  {
     role: { en: "Marketing Director", ko: "마케팅 디렉터" },
     organization: {
       en: "University of Toronto Korean Students' Association (UTKSA)",
       ko: "토론토 대학교 한인학생회 (UTKSA)",
     },
-    period: "Sep 2024 — Present",
+    period: "Mar 2025 — Dec 2025",
     description: {
-      en: "Leading brand strategy, social media content creation, and event marketing for one of the largest cultural clubs on campus. Managing a team of designers and content creators.",
-      ko: "캠퍼스 내 최대 규모의 문화 동아리 중 하나의 브랜드 전략, 소셜 미디어 콘텐츠 제작, 이벤트 마케팅을 주도하고 있습니다. 디자이너와 콘텐츠 크리에이터 팀을 관리합니다.",
+      en: "Served as Marketing Director, overseeing brand strategy, social media content, and event marketing for UTKSA.",
+      ko: "마케팅 디렉터로서 UTKSA의 브랜드 전략, 소셜 미디어 콘텐츠, 이벤트 마케팅을 총괄했습니다.",
+    },
+  },
+  {
+    role: { en: "Marketing Director", ko: "마케팅 디렉터" },
+    organization: {
+      en: "ICN (International Culture Network)",
+      ko: "ICN (International Culture Network)",
+    },
+    period: "Mar 2024 — Mar 2025",
+    description: {
+      en: "Directed marketing and content strategy at one of the most creative EDI-based cultural clubs on campus. Led social media management, YouTube channel operations, and content creative marketing to promote cultural awareness and community engagement.",
+      ko: "캠퍼스에서 가장 창의적인 EDI 기반 문화 동아리 중 하나의 마케팅 및 콘텐츠 전략을 총괄했습니다. 소셜 미디어 관리, YouTube 채널 운영, 콘텐츠 크리에이티브 마케팅을 주도하여 문화 인식과 커뮤니티 참여를 촉진했습니다.",
     },
   },
   {
