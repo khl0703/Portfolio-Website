@@ -34,7 +34,7 @@ export default function Experience() {
           <div className="space-y-12">
             {experiences.map((exp, i) => (
               <motion.div
-                key={exp.role.en}
+                key={`${i}-${exp.organization.en}`}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
