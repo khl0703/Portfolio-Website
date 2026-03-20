@@ -2,12 +2,17 @@
 
 import { motion } from "framer-motion";
 import { skillCategories } from "@/lib/data";
+import { useLang } from "./LanguageProvider";
 
 const categoryIcons: Record<string, string> = {
   "Finance & Accounting": "chart",
+  "금융 & 회계": "chart",
   Technical: "code",
+  "기술": "code",
   Creative: "palette",
+  "크리에이티브": "palette",
   "Tools & Soft Skills": "tools",
+  "도구 & 소프트 스킬": "tools",
 };
 
 function CategoryIcon({ category }: { category: string }) {
@@ -30,7 +35,15 @@ function CategoryIcon({ category }: { category: string }) {
   );
 }
 
+const sectionText = {
+  en: { label: "Skills", heading: "What I Work With" },
+  ko: { label: "스킬", heading: "활용 기술" },
+};
+
 export default function Skills() {
+  const { lang } = useLang();
+  const t = sectionText[lang];
+
   return (
     <section id="skills" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -41,33 +54,31 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-sm tracking-widest uppercase text-[var(--accent)] mb-3 font-medium">
-            Skills
+            {t.label}
           </h2>
-          <h3 className="text-3xl sm:text-4xl font-bold mb-12">
-            What I Work With
-          </h3>
+          <h3 className="text-3xl sm:text-4xl font-bold mb-12">{t.heading}</h3>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((cat, i) => (
             <motion.div
-              key={cat.name}
+              key={cat.name.en}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="bg-[var(--card)] border border-[var(--card-border)] rounded-xl p-6 hover:border-[var(--accent)] transition-all duration-300"
             >
-              <CategoryIcon category={cat.name} />
-              <h4 className="font-semibold mb-4">{cat.name}</h4>
+              <CategoryIcon category={cat.name[lang]} />
+              <h4 className="font-semibold mb-4">{cat.name[lang]}</h4>
               <ul className="space-y-2">
                 {cat.skills.map((skill) => (
                   <li
-                    key={skill}
+                    key={skill.en}
                     className="text-sm text-[var(--muted)] flex items-center gap-2"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shrink-0" />
-                    {skill}
+                    {skill[lang]}
                   </li>
                 ))}
               </ul>

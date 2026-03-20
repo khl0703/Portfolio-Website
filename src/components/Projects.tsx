@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { projects } from "@/lib/data";
 import type { Project } from "@/lib/data";
+import { useLang } from "./LanguageProvider";
 import ProjectModal from "./ProjectModal";
 
 const tagColors: Record<string, string> = {
@@ -24,7 +25,24 @@ function getTagColor(tag: string) {
   return tagColors[tag] || "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400";
 }
 
+const text = {
+  en: {
+    label: "Projects",
+    heading: "Featured Work",
+    desc: "A selection of projects spanning finance, accounting, analytics, marketing, and systems design.",
+    viewDetails: "View Details",
+  },
+  ko: {
+    label: "프로젝트",
+    heading: "주요 프로젝트",
+    desc: "금융, 회계, 분석, 마케팅, 시스템 디자인을 아우르는 프로젝트 모음입니다.",
+    viewDetails: "자세히 보기",
+  },
+};
+
 export default function Projects() {
+  const { lang } = useLang();
+  const t = text[lang];
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const handleClose = useCallback(() => {
@@ -41,20 +59,16 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-sm tracking-widest uppercase text-[var(--accent)] mb-3 font-medium">
-            Projects
+            {t.label}
           </h2>
-          <h3 className="text-3xl sm:text-4xl font-bold mb-4">
-            Featured Work
-          </h3>
-          <p className="text-[var(--muted)] mb-12 max-w-2xl">
-            A selection of projects spanning finance, accounting, analytics, marketing, and systems design.
-          </p>
+          <h3 className="text-3xl sm:text-4xl font-bold mb-4">{t.heading}</h3>
+          <p className="text-[var(--muted)] mb-12 max-w-2xl">{t.desc}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, i) => (
             <motion.div
-              key={project.title}
+              key={project.title.en}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -73,11 +87,11 @@ export default function Projects() {
               </div>
 
               <h4 className="text-lg font-semibold mb-3 group-hover:text-[var(--accent)] transition-colors">
-                {project.title}
+                {project.title[lang]}
               </h4>
 
               <p className="text-sm text-[var(--muted)] leading-relaxed mb-4 flex-1">
-                {project.summary}
+                {project.summary[lang]}
               </p>
 
               <div className="flex flex-wrap gap-2 mb-4">
@@ -95,7 +109,7 @@ export default function Projects() {
                 onClick={() => setSelectedProject(project)}
                 className="text-sm text-[var(--accent)] font-medium hover:underline self-start cursor-pointer"
               >
-                View Details &rarr;
+                {t.viewDetails} &rarr;
               </button>
             </motion.div>
           ))}

@@ -3,26 +3,80 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
+import { useLang } from "./LanguageProvider";
 
-const links = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Resume", href: "#resume" },
-  { label: "Contact", href: "#contact" },
-];
+const linksData = {
+  en: [
+    { label: "About", href: "#about" },
+    { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#experience" },
+    { label: "Skills", href: "#skills" },
+    { label: "Resume", href: "#resume" },
+    { label: "Contact", href: "#contact" },
+  ],
+  ko: [
+    { label: "소개", href: "#about" },
+    { label: "프로젝트", href: "#projects" },
+    { label: "경험", href: "#experience" },
+    { label: "스킬", href: "#skills" },
+    { label: "이력서", href: "#resume" },
+    { label: "연락처", href: "#contact" },
+  ],
+};
 
 export default function Navigation() {
   const { theme, toggleTheme } = useTheme();
+  const { lang, toggleLang } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const links = linksData[lang];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const ThemeButton = () => (
+    <button
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border)] hover:border-[var(--accent)] hover:bg-[var(--accent-light)] transition-all text-sm font-medium cursor-pointer"
+    >
+      {theme === "dark" ? (
+        <>
+          <span className="text-base leading-none">☀️</span>
+          <span>Light</span>
+        </>
+      ) : (
+        <>
+          <span className="text-base leading-none">🌙</span>
+          <span>Dark</span>
+        </>
+      )}
+    </button>
+  );
+
+  const LangButton = () => (
+    <button
+      onClick={toggleLang}
+      aria-label="Toggle language"
+      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border)] hover:border-[var(--accent)] hover:bg-[var(--accent-light)] transition-all text-sm font-medium cursor-pointer"
+    >
+      {lang === "en" ? (
+        <>
+          <span className="text-base leading-none">🇰🇷</span>
+          <span>한국어</span>
+        </>
+      ) : (
+        <>
+          <span className="text-base leading-none">🇺🇸</span>
+          <span>English</span>
+        </>
+      )}
+    </button>
+  );
 
   return (
     <motion.nav
@@ -54,57 +108,16 @@ export default function Navigation() {
               {link.label}
             </a>
           ))}
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="w-9 h-9 flex items-center justify-center rounded-full border border-[var(--border)] hover:border-[var(--accent)] transition-colors"
-          >
-            {theme === "dark" ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="5" />
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-            )}
-          </button>
+          <div className="flex items-center gap-2">
+            <ThemeButton />
+            <LangButton />
+          </div>
         </div>
 
         {/* Mobile menu button */}
-        <div className="flex items-center gap-3 md:hidden">
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="w-9 h-9 flex items-center justify-center rounded-full border border-[var(--border)]"
-          >
-            {theme === "dark" ? (
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            )}
-          </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeButton />
+          <LangButton />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"

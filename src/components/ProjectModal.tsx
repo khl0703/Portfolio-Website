@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Project } from "@/lib/data";
+import { useLang } from "./LanguageProvider";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -27,8 +28,15 @@ function getTagColor(tag: string) {
   return tagColors[tag] || "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-400";
 }
 
+const text = {
+  en: { aboutProject: "About This Project", toolsLabel: "Tools & Technologies" },
+  ko: { aboutProject: "프로젝트 소개", toolsLabel: "사용 도구 & 기술" },
+};
+
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
-  // Lock body scroll when modal is open
+  const { lang } = useLang();
+  const t = text[lang];
+
   useEffect(() => {
     if (project) {
       document.body.style.overflow = "hidden";
@@ -38,7 +46,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [project]);
 
-  // Close on Escape key
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -59,7 +66,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          {/* Backdrop */}
           <motion.div
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={onClose}
@@ -69,7 +75,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             aria-hidden="true"
           />
 
-          {/* Modal content */}
           <motion.div
             className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-[var(--card)] border border-[var(--card-border)] rounded-2xl shadow-2xl"
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -80,7 +85,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             aria-modal="true"
             aria-labelledby="modal-title"
           >
-            {/* Close button */}
             <button
               onClick={onClose}
               className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-[var(--bg)]/80 border border-[var(--border)] text-[var(--muted)] hover:text-[var(--foreground)] hover:border-[var(--accent)] transition-colors"
@@ -92,7 +96,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </button>
 
             <div className="p-6 sm:p-8">
-              {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tags.map((tag) => (
                   <span
@@ -104,31 +107,27 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 ))}
               </div>
 
-              {/* Title */}
               <h2
                 id="modal-title"
                 className="text-xl sm:text-2xl font-bold mb-4 pr-8"
               >
-                {project.title}
+                {project.title[lang]}
               </h2>
 
-              {/* Divider */}
               <div className="h-px bg-[var(--border)] mb-5" />
 
-              {/* Details */}
               <div className="mb-6">
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)] mb-3">
-                  About This Project
+                  {t.aboutProject}
                 </h3>
                 <p className="text-[var(--muted)] leading-relaxed text-sm sm:text-base">
-                  {project.details}
+                  {project.details[lang]}
                 </p>
               </div>
 
-              {/* Tools */}
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)] mb-3">
-                  Tools & Technologies
+                  {t.toolsLabel}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {project.tools.map((tool) => (
