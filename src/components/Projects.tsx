@@ -1,7 +1,10 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { projects } from "@/lib/data";
+import type { Project } from "@/lib/data";
+import ProjectModal from "./ProjectModal";
 
 const tagColors: Record<string, string> = {
   Finance: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
@@ -22,6 +25,12 @@ function getTagColor(tag: string) {
 }
 
 export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const handleClose = useCallback(() => {
+    setSelectedProject(null);
+  }, []);
+
   return (
     <section id="projects" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -82,13 +91,18 @@ export default function Projects() {
                 ))}
               </div>
 
-              <button className="text-sm text-[var(--accent)] font-medium hover:underline self-start">
+              <button
+                onClick={() => setSelectedProject(project)}
+                className="text-sm text-[var(--accent)] font-medium hover:underline self-start cursor-pointer"
+              >
                 View Details &rarr;
               </button>
             </motion.div>
           ))}
         </div>
       </div>
+
+      <ProjectModal project={selectedProject} onClose={handleClose} />
     </section>
   );
 }
