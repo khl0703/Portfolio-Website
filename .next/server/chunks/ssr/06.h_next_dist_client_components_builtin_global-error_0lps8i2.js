@@ -1,0 +1,3 @@
+module.exports=[49429,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(26767);a.n(d("[project]/Desktop/포트폴리오 웹사이트/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},84788,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(26767);a.n(d("[project]/Desktop/포트폴리오 웹사이트/node_modules/next/dist/client/components/builtin/global-error.js"))},48499,a=>{"use strict";a.i(49429);var b=a.i(84788);a.n(b)},41575,a=>{a.n(a.i(48499))}];
+
+//# sourceMappingURL=06.h_next_dist_client_components_builtin_global-error_0lps8i2.js.map
