@@ -155,18 +155,6 @@ export const experiences: Experience[] = [
     },
   },
   {
-    role: { en: "Finance Case Competition Participant", ko: "금융 케이스 경진대회 참가자" },
-    organization: {
-      en: "University of Toronto Scarborough",
-      ko: "토론토 대학교 스카보로 캠퍼스",
-    },
-    period: "Jan 2025 — Mar 2025",
-    description: {
-      en: "Competed in finance case competitions analyzing real-world business problems, developing financial models, and presenting strategic recommendations to panels of judges.",
-      ko: "금융 케이스 경진대회에 참가하여 실제 비즈니스 문제를 분석하고, 재무 모델을 개발하며, 심사위원단에게 전략적 권고사항을 발표했습니다.",
-    },
-  },
-  {
     role: { en: "Academic Projects — BBA Program", ko: "학술 프로젝트 — BBA 프로그램" },
     organization: {
       en: "University of Toronto Scarborough — Management",
