@@ -1,5 +1,0 @@
-1:"$Sreact.fragment"
-2:I[20883,["/_next/static/chunks/0bawjccsbbleq.js","/_next/static/chunks/16..gncjr9q_m.js"],"ViewportBoundary"]
-3:I[20883,["/_next/static/chunks/0bawjccsbbleq.js","/_next/static/chunks/16..gncjr9q_m.js"],"MetadataBoundary"]
-4:"$Sreact.suspense"
-0:{"rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Kihun Lee — Portfolio"}],["$","meta","1",{"name":"description","content":"Management student building at the intersection of business, finance, creativity, and digital systems."}],["$","meta","2",{"name":"keywords","content":"Kihun Lee,portfolio,finance,accounting,University of Toronto,business"}]]}]}]}],null]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"UPZw9lHOrhn6OFoKN4VXs"}

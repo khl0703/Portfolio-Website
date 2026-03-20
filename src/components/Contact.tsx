@@ -75,15 +75,17 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="group bg-[var(--card)] border border-[var(--card-border)] rounded-xl p-6 text-center hover:border-[var(--accent)] transition-all duration-300 hover:shadow-lg"
+              className="group bg-[var(--card)] border border-[var(--card-border)] rounded-xl p-6 text-center hover:border-[var(--accent)] transition-all duration-300 hover:shadow-lg min-h-[160px] flex flex-col items-center justify-center"
             >
               <div className="w-12 h-12 rounded-full bg-[var(--accent-light)] flex items-center justify-center mx-auto mb-4 text-[var(--accent)] group-hover:scale-110 transition-transform">
                 {social.icon}
               </div>
               <h4 className="font-semibold mb-1">{social.label}</h4>
-              <p className="text-sm text-[var(--muted)] break-all">
-                {social.text}
-              </p>
+              {social.label === "Email" && (
+                <p className="text-sm text-[var(--muted)] break-all">
+                  {social.text}
+                </p>
+              )}
             </motion.a>
           ))}
         </div>
